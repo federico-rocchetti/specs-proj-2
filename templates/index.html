@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Mr. Cupcake</title>
+</head>
+<body>
+    <h1 class="main-header">Mr. Cupcake</h1>
+    <div class="order">
+        <a href="{{ url_for('order') }}">Order</a>
+    </div>
+    <div class="cupcake-container">
+        {% for cupcake in cupcakes %}
+        <div class="cupcake">
+            <a href="{{ url_for('individual_cupcake', name=cupcake['name']) }}">
+                <h3 class="cupcake-name">{{ cupcake["name"] }}</h3>
+            </a>
+            <h4 class="cupcake-desc">Flavor: {{ cupcake["flavor"] }}</h4>
+            <h4 class="cupcake-desc">Frosting: {{ cupcake["frosting"] }}</h4>
+            <h4 class="cupcake-desc">Price: ${{ cupcake["price"] }}</h4>
+            <a class="add-to-cart" href="{{ url_for('add_cupcake_to_order', name=cupcake['name']) }}">
+                <button class="add-to-cart-btn">Add to cart</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
